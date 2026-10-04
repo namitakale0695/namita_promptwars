@@ -1,0 +1,6 @@
+{
+  "name": "BLIND SPOT",
+  "description": "An AI thinking companion that challenges your reasoning without making the decision for you. See what you're missing before you decide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
