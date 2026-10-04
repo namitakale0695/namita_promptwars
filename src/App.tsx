@@ -373,19 +373,63 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-[#070A12] bg-analytical-grid text-slate-100">
       {/* =====================================================================
-          2. NAVIGATION COMMAND BAR (Strict 3-Zone Contract)
+          2. NAVIGATION COMMAND BAR (Refined with Custom Geometric Logo & Wordmark)
          ===================================================================== */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 lg:px-12 h-16 bg-[#070A12]/90 backdrop-blur-md border-b border-slate-800/80">
-        {/* Zone 1: Single Brand Wordmark */}
+      <header className="sticky top-0 z-40 flex items-center justify-between px-6 lg:px-12 h-15 bg-[#070A12]/88 backdrop-blur-md border-b border-slate-800/70">
+        {/* Zone 1: Custom Minimalist Geometric Aperture/Eye Logo + Refined Wordmark */}
         <a
           href="#top"
-          className="text-lg font-extrabold tracking-tight text-slate-50 font-display whitespace-nowrap"
+          aria-label="BLIND SPOT Home"
+          className="group inline-flex items-center gap-2.5 whitespace-nowrap focus:outline-none"
         >
-          BLIND SPOT
+          <svg
+            className="w-6 h-6 shrink-0"
+            viewBox="0 0 28 28"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            {/* Upper Geometric Observation Arc (with intentional missing blind-spot gap on top-right) */}
+            <path
+              d="M3.5 14C6.2 8.8 10.1 6.5 14 6.5C16.1 6.5 18.1 7.2 19.8 8.4"
+              stroke="#F8FAFC"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              className="transition-all duration-250 ease-out group-hover:stroke-white"
+            />
+            {/* Lower Opposing Geometric Observation Arc */}
+            <path
+              d="M24.5 14C21.8 19.2 17.9 21.5 14 21.5C11.3 21.5 8.8 20.4 6.7 18.5"
+              stroke="#F8FAFC"
+              strokeWidth="1.75"
+              strokeLinecap="round"
+              className="transition-all duration-250 ease-out group-hover:stroke-white"
+            />
+            {/* Central Analytical Aperture Ring */}
+            <circle
+              cx="14"
+              cy="14"
+              r="2.4"
+              stroke="#F8FAFC"
+              strokeWidth="1.5"
+              className="transition-transform duration-250 ease-out origin-center group-hover:scale-110"
+            />
+            {/* The Displaced "Blind Spot" Node — subtly shifts into focus on hover */}
+            <circle
+              cx="21.5"
+              cy="10.2"
+              r="2.1"
+              fill="#F59E0B"
+              className="transition-all duration-250 ease-out group-hover:translate-x-[1px] group-hover:-translate-y-[1px] group-hover:fill-amber-400"
+            />
+          </svg>
+          <span className="text-[14px] font-semibold tracking-[0.14em] text-slate-100 group-hover:text-white transition-colors duration-200">
+            BLIND SPOT
+          </span>
         </a>
 
-        {/* Zone 2: 4 Command Bar Navigation Links with Active Amber Indicator */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#0D1322] border border-slate-800/90 rounded-lg p-1">
+        {/* Zone 2: Refined Command Bar Navigation Links with Subtle Amber Active Indicator */}
+        <nav className="hidden md:flex items-center gap-7">
           {[
             { id: 'workspace', label: 'Analyze a Decision', href: '#workspace' },
             { id: 'dashboard', label: 'Blind Spots', href: '#dashboard' },
@@ -398,15 +442,15 @@ export default function App() {
                 key={item.id}
                 href={item.href}
                 onClick={() => setActiveNav(item.id as NavSection)}
-                className={`relative px-3.5 py-1.5 text-xs font-medium rounded-md transition-all duration-150 whitespace-nowrap ${
+                className={`relative py-1.5 text-xs font-medium tracking-wide transition-colors duration-200 whitespace-nowrap ${
                   isActive
-                    ? 'text-amber-300 bg-amber-500/10'
-                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/40'
+                    ? 'text-slate-100'
+                    : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
                 {item.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-amber-400 rounded-full" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-amber-400 rounded-full" />
                 )}
               </a>
             );
@@ -418,7 +462,7 @@ export default function App() {
           <button
             type="button"
             onClick={scrollToAnalyzer}
-            className="px-4 py-2 text-xs font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-all duration-150 hover:-translate-y-0.5 shadow-sm shadow-amber-500/10 whitespace-nowrap cursor-pointer"
+            className="px-3.5 py-1.5 text-xs font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-md transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
           >
             Analyze a Decision
           </button>
@@ -429,120 +473,119 @@ export default function App() {
         {/* =====================================================================
             1. HERO SECTION & 3. DECISION INTELLIGENCE ENGINE VISUALIZATION
            ===================================================================== */}
-        <section className="relative overflow-hidden border-b border-slate-800/80 pt-12 pb-16 lg:pt-20 lg:pb-24 px-6 lg:px-12">
-          {/* Subtle Thinking System SVG Backdrop: Faint Connected Nodes & Analytical Orbits */}
-          <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-35" aria-hidden="true">
+        <section className="relative overflow-hidden border-b border-slate-800/70 pt-12 pb-16 lg:pt-18 lg:pb-22 px-6 lg:px-12">
+          {/* Extremely Subtle Thinking System SVG Backdrop (Low Opacity Orbital Curves & Data Points) */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-20" aria-hidden="true">
             <svg
               className="w-full h-full"
               viewBox="0 0 1440 680"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* Faint Orbital Decision Paths */}
+              {/* Thin Orbital Curves */}
               <circle
                 cx="1040"
-                cy="320"
-                r="230"
-                stroke="#1E293B"
-                strokeWidth="1"
-                strokeDasharray="4 6"
+                cy="310"
+                r="220"
+                stroke="#334155"
+                strokeWidth="0.75"
+                strokeDasharray="3 6"
               />
               <circle
                 cx="1040"
-                cy="320"
-                r="340"
+                cy="310"
+                r="325"
                 stroke="#1E293B"
-                strokeWidth="1"
+                strokeWidth="0.75"
               />
-              {/* Decision Branching Vectors */}
+              {/* Subtle Connecting Reasoning Trajectories */}
               <path
-                d="M120 520 C 380 520, 520 260, 810 260"
+                d="M100 490 C 360 490, 520 250, 820 250"
                 stroke="#38BDF8"
-                strokeOpacity="0.22"
-                strokeWidth="1"
+                strokeOpacity="0.25"
+                strokeWidth="0.75"
                 strokeDasharray="3 5"
               />
               <path
-                d="M120 520 C 420 520, 560 400, 810 400"
+                d="M100 490 C 400 490, 560 385, 820 385"
                 stroke="#F59E0B"
                 strokeOpacity="0.28"
-                strokeWidth="1"
+                strokeWidth="0.75"
               />
-              {/* Analytical Nodes */}
-              <circle cx="120" cy="520" r="3.5" fill="#F59E0B" className="animate-pulse-subtle" />
-              <circle cx="465" cy="390" r="3" fill="#38BDF8" className="animate-pulse-subtle" />
-              <circle cx="810" cy="260" r="3.5" fill="#38BDF8" />
-              <circle cx="810" cy="400" r="3.5" fill="#F43F5E" className="animate-pulse-subtle" />
+              {/* Tiny Data Nodes */}
+              <circle cx="100" cy="490" r="2.5" fill="#F59E0B" className="animate-pulse-subtle" />
+              <circle cx="460" cy="370" r="2" fill="#38BDF8" className="animate-pulse-subtle" />
+              <circle cx="820" cy="250" r="2.5" fill="#38BDF8" />
+              <circle cx="820" cy="385" r="2.5" fill="#F43F5E" className="animate-pulse-subtle" />
             </svg>
           </div>
 
-          <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-            {/* Left Column (7 Cols): Editorial Headline + 4-Stage Trajectory */}
-            <div className="lg:col-span-7 space-y-7">
-              <div className="flex items-center gap-2.5 text-xs font-mono text-amber-400 tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse-subtle" />
-                <span>AI DECISION-INTELLIGENCE LABORATORY</span>
+          <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
+            {/* Left Column (7 Cols): Balanced Category Label -> Refined Editorial Headline -> Explanation -> Primary CTA */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 text-[11px] font-mono text-amber-400/90 tracking-[0.12em] uppercase">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse-subtle" />
+                <span>AI Decision-Intelligence Laboratory</span>
                 <span aria-hidden="true" className="text-slate-600">·</span>
-                <span className="text-sky-400">NON-PRESCRIPTIVE ENGINE</span>
+                <span className="text-sky-400/90">Non-Prescriptive</span>
               </div>
 
-              <h1
-                className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold tracking-tight text-slate-50 font-display leading-[1.04]"
-                style={{ textWrap: 'balance' }}
-              >
-                See what you&apos;re missing before you decide.
+              <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-semibold tracking-[-0.025em] text-slate-50 leading-[1.16] max-w-xl">
+                See what you&apos;re missing
+                <br />
+                <span className="text-slate-200 font-medium">before you decide.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-                BLIND SPOT is an AI thinking companion that challenges your reasoning without making the decision for you—exposing hidden assumptions, missing evidence, biases, and second-order effects before you commit.
+              <p className="text-[15px] sm:text-base text-slate-300/90 max-w-lg leading-[1.65] font-normal">
+                An AI thinking companion that challenges your reasoning without making the decision for you—surfacing hidden assumptions, missing information, risks, and second-order effects before you commit.
               </p>
 
               {/* Primary Hero Actions */}
-              <div className="pt-1 flex flex-wrap items-center gap-4">
+              <div className="pt-1 flex flex-wrap items-center gap-3.5">
                 <button
                   type="button"
                   onClick={scrollToAnalyzer}
-                  className="group inline-flex items-center gap-3 px-6 py-3.5 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-all duration-150 hover:-translate-y-0.5 shadow-lg shadow-amber-500/15 whitespace-nowrap cursor-pointer"
+                  className="group inline-flex items-center gap-2.5 px-5 py-3 text-xs font-semibold tracking-wide text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-all duration-200 hover:-translate-y-0.5 shadow-md shadow-amber-500/10 whitespace-nowrap cursor-pointer"
                 >
                   <span>ANALYZE A DECISION</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-1" />
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleSelectScenario(SAMPLE_SCENARIOS[0])}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-medium text-slate-300 hover:text-slate-100 bg-[#0D1322]/90 border border-slate-800 hover:border-slate-700 rounded-lg transition-all duration-150 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-3 text-xs font-medium text-slate-300 hover:text-slate-100 bg-[#0D1322]/80 border border-slate-800/90 hover:border-slate-700 rounded-lg transition-all duration-200 whitespace-nowrap cursor-pointer"
                 >
-                  <span>Load Live Demo Dilemma</span>
+                  <span>Load Demo Dilemma</span>
                 </button>
               </div>
 
               {/* Architectural Flow Pipeline: 01 DECISION -> 02 BLIND-SPOT AUDIT -> 03 RED TEAM -> 04 REVISED THINKING */}
-              <div className="pt-4 border-t border-slate-800/80">
-                <p className="text-[11px] font-mono text-slate-400 tracking-wider mb-3">
-                  COGNITIVE VERIFICATION ARCHITECTURE
+              <div className="pt-5 border-t border-slate-800/60">
+                <p className="text-[10px] font-mono text-slate-400 tracking-[0.14em] uppercase mb-2.5">
+                  Cognitive Verification Flow
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                   {[
-                    { num: '01', label: 'DECISION', desc: 'Input & Framing', accent: 'text-slate-200 border-slate-800' },
-                    { num: '02', label: 'BLIND-SPOT AUDIT', desc: '9 Dimensions', accent: 'text-amber-400 border-amber-500/30' },
-                    { num: '03', label: 'RED TEAM', desc: 'Counter-Case', accent: 'text-rose-400 border-rose-500/30' },
-                    { num: '04', label: 'REVISED THINKING', desc: 'Evolution Diff', accent: 'text-emerald-400 border-emerald-500/30' },
+                    { num: '01', label: 'DECISION', desc: 'Input & Framing', accent: 'border-slate-800/90' },
+                    { num: '02', label: 'BLIND-SPOT AUDIT', desc: '9 Dimensions', accent: 'border-amber-500/25' },
+                    { num: '03', label: 'RED TEAM', desc: 'Counter-Case', accent: 'border-rose-500/25' },
+                    { num: '04', label: 'REVISED THINKING', desc: 'Evolution Diff', accent: 'border-emerald-500/25' },
                   ].map((step, index) => (
                     <div
                       key={step.num}
-                      className={`relative p-3 rounded-lg bg-[#0D1322]/90 border ${step.accent} transition-colors`}
+                      className={`relative p-2.5 rounded-lg bg-[#0B101D]/80 border ${step.accent} transition-colors`}
                     >
-                      <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                        <span className="text-slate-400">{step.num}</span>
+                      <div className="flex items-center justify-between text-[10px] font-mono mb-0.5">
+                        <span className="text-amber-400/90 tabular-nums">{step.num}</span>
                         {index < 3 && (
                           <span className="text-slate-600 hidden sm:inline" aria-hidden="true">→</span>
                         )}
                       </div>
-                      <div className="text-xs font-bold tracking-wide text-slate-100 whitespace-nowrap truncate">
+                      <div className="text-[11px] font-semibold tracking-wide text-slate-200 whitespace-nowrap truncate">
                         {step.label}
                       </div>
-                      <div className="text-[11px] text-slate-400 mt-0.5 truncate">
+                      <div className="text-[10px] text-slate-400 mt-0.5 truncate">
                         {step.desc}
                       </div>
                     </div>
@@ -551,31 +594,31 @@ export default function App() {
               </div>
             </div>
 
-            {/* Right Column (5 Cols): 3. DECISION INTELLIGENCE ENGINE VISUALIZATION */}
+            {/* Right Column (5 Cols): 3. DECISION INTELLIGENCE ENGINE VISUALIZATION (Balanced Contrast) */}
             <div className="lg:col-span-5">
-              <div className="bg-[#0D1322] border border-slate-800 rounded-xl p-6 space-y-5 shadow-2xl shadow-black/60">
+              <div className="bg-[#0B101D]/90 border border-slate-800/80 rounded-xl p-5 sm:p-6 space-y-4 shadow-xl shadow-black/40">
                 {/* Panel Header */}
-                <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div className="flex items-center justify-between border-b border-slate-800/80 pb-3.5">
                   <div className="space-y-0.5">
-                    <div className="flex items-center gap-2 text-[11px] font-mono text-sky-400 tracking-wider">
+                    <div className="flex items-center gap-2 text-[10px] font-mono text-sky-400/90 tracking-[0.12em]">
                       <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse-subtle" />
                       <span>DECISION INTELLIGENCE ENGINE</span>
                     </div>
-                    <h2 className="text-base font-bold text-slate-100 font-display">
+                    <h2 className="text-sm font-semibold text-slate-100">
                       Multi-Stage Reasoning Diagnostic
                     </h2>
                   </div>
                   <div className="text-right font-mono">
-                    <span className="text-xs text-slate-400 block">AGENCY</span>
-                    <span className="text-sm font-bold text-amber-400 tabular-nums">100% USER</span>
+                    <span className="text-[10px] text-slate-400 block">AGENCY</span>
+                    <span className="text-xs font-semibold text-amber-400 tabular-nums">100% USER</span>
                   </div>
                 </div>
 
                 {/* Connected Interactive Stages with Vertical Connector Line & Ring Indicators */}
-                <div className="relative space-y-3">
+                <div className="relative space-y-2.5">
                   {/* Vertical Analytical Connector Line */}
                   <div
-                    className="pointer-events-none absolute left-6 top-8 bottom-8 w-[1px] bg-slate-800"
+                    className="pointer-events-none absolute left-5 top-7 bottom-7 w-[1px] bg-slate-800"
                     aria-hidden="true"
                   />
 
@@ -583,22 +626,21 @@ export default function App() {
                   <div
                     onMouseEnter={() => setHoveredEngineStage(0)}
                     onClick={scrollToAnalyzer}
-                    className={`relative pl-12 pr-4 py-4 rounded-lg border transition-all duration-150 cursor-pointer ${
+                    className={`relative pl-11 pr-4 py-3.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                       hoveredEngineStage === 0
-                        ? 'bg-[#121A2E] border-amber-500/50 translate-x-0.5'
-                        : 'bg-[#070A12]/90 border-slate-800/90 hover:border-slate-700'
+                        ? 'bg-[#11182B] border-amber-500/40'
+                        : 'bg-[#070A12]/80 border-slate-800/80 hover:border-slate-700'
                     }`}
                   >
-                    {/* Ring Indicator Node */}
-                    <div className="absolute left-3.5 top-5 w-5 h-5 rounded-full bg-[#070A12] border-2 border-amber-400 flex items-center justify-center">
+                    <div className="absolute left-3 top-4 w-4 h-4 rounded-full bg-[#070A12] border-[1.5px] border-amber-400 flex items-center justify-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                      <span className="text-amber-400 font-semibold">STAGE 01 · BLIND-SPOT AUDIT</span>
-                      <span className="text-slate-300 tabular-nums">9 DIMENSIONS</span>
+                    <div className="flex items-center justify-between text-[10px] font-mono mb-1">
+                      <span className="text-amber-400 font-medium tracking-wider">01 · BLIND-SPOT AUDIT</span>
+                      <span className="text-slate-400 tabular-nums">9 DIMENSIONS</span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300/90 leading-relaxed">
                       Deconstructs stated facts, fragile assumptions, missing variables, and second-order consequences.
                     </p>
                   </div>
@@ -613,21 +655,21 @@ export default function App() {
                         scrollToAnalyzer();
                       }
                     }}
-                    className={`relative pl-12 pr-4 py-4 rounded-lg border transition-all duration-150 cursor-pointer ${
+                    className={`relative pl-11 pr-4 py-3.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                       hoveredEngineStage === 1
-                        ? 'bg-[#17111C] border-rose-500/50 translate-x-0.5'
-                        : 'bg-[#070A12]/90 border-slate-800/90 hover:border-slate-700'
+                        ? 'bg-[#16101B] border-rose-500/40'
+                        : 'bg-[#070A12]/80 border-slate-800/80 hover:border-slate-700'
                     }`}
                   >
-                    <div className="absolute left-3.5 top-5 w-5 h-5 rounded-full bg-[#070A12] border-2 border-rose-400 flex items-center justify-center">
+                    <div className="absolute left-3 top-4 w-4 h-4 rounded-full bg-[#070A12] border-[1.5px] border-rose-400 flex items-center justify-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-rose-400" />
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                      <span className="text-rose-400 font-semibold">STAGE 02 · RED TEAM</span>
-                      <span className="text-rose-300 tabular-nums">STRESS TEST</span>
+                    <div className="flex items-center justify-between text-[10px] font-mono mb-1">
+                      <span className="text-rose-400 font-medium tracking-wider">02 · RED TEAM</span>
+                      <span className="text-rose-300/90 tabular-nums">STRESS TEST</span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300/90 leading-relaxed">
                       Constructs the strongest counterargument against your leaning and defines disproving evidence.
                     </p>
                   </div>
@@ -642,30 +684,30 @@ export default function App() {
                         scrollToAnalyzer();
                       }
                     }}
-                    className={`relative pl-12 pr-4 py-4 rounded-lg border transition-all duration-150 cursor-pointer ${
+                    className={`relative pl-11 pr-4 py-3.5 rounded-lg border transition-all duration-200 cursor-pointer ${
                       hoveredEngineStage === 2
-                        ? 'bg-[#0D1D1C] border-emerald-500/50 translate-x-0.5'
-                        : 'bg-[#070A12]/90 border-slate-800/90 hover:border-slate-700'
+                        ? 'bg-[#0C1A19] border-emerald-500/40'
+                        : 'bg-[#070A12]/80 border-slate-800/80 hover:border-slate-700'
                     }`}
                   >
-                    <div className="absolute left-3.5 top-5 w-5 h-5 rounded-full bg-[#070A12] border-2 border-emerald-400 flex items-center justify-center">
+                    <div className="absolute left-3 top-4 w-4 h-4 rounded-full bg-[#070A12] border-[1.5px] border-emerald-400 flex items-center justify-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     </div>
 
-                    <div className="flex items-center justify-between text-[11px] font-mono mb-1">
-                      <span className="text-emerald-400 font-semibold">STAGE 03 · THINKING REVISITED</span>
-                      <span className="text-emerald-300 tabular-nums">EVOLUTION</span>
+                    <div className="flex items-center justify-between text-[10px] font-mono mb-1">
+                      <span className="text-emerald-400 font-medium tracking-wider">03 · THINKING REVISITED</span>
+                      <span className="text-emerald-300/90 tabular-nums">EVOLUTION</span>
                     </div>
-                    <p className="text-xs text-slate-300 leading-relaxed">
+                    <p className="text-xs text-slate-300/90 leading-relaxed">
                       Preserves your initial thinking alongside discovered blind spots and your revised synthesis.
                     </p>
                   </div>
                 </div>
 
                 {/* Footer Telemetry Bar */}
-                <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-slate-400">
                   <span>PROTOCOL: ZERO-VERDICT AUDIT</span>
-                  <span className="text-sky-400 tabular-nums">
+                  <span className="text-sky-400/90 tabular-nums">
                     {currentAnalysis ? `${totalSignals} SIGNALS DETECTED` : 'READY FOR INPUT'}
                   </span>
                 </div>
