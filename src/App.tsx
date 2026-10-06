@@ -24,6 +24,7 @@ import {
   SlidersHorizontal
 } from 'lucide-react';
 import { DecisionAnalysis, RedTeamAnalysis, MindChangeAnalysis } from './types';
+import BlindSpotLogo from './components/BlindSpotLogo';
 import {
   SAMPLE_SCENARIOS,
   generateFallbackAnalysis,
@@ -375,52 +376,46 @@ export default function App() {
       {/* =====================================================================
           2. NAVIGATION COMMAND BAR (Strict 3-Zone Contract)
          ===================================================================== */}
-      <header className="sticky top-0 z-40 flex items-center justify-between px-6 lg:px-12 h-16 bg-[#070A12]/90 backdrop-blur-md border-b border-slate-800/80">
-        {/* Zone 1: Single Brand Wordmark */}
-        <a
-          href="#top"
-          className="text-lg font-extrabold tracking-tight text-slate-50 font-display whitespace-nowrap"
-        >
-          BLIND SPOT
-        </a>
+      <header className="sticky top-0 z-40 border-b border-white/10 bg-[#0B0F14]/80 backdrop-blur-md">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center">
+            <a href="#top" aria-label="BLIND SPOT home">
+              <BlindSpotLogo size={32} />
+            </a>
+          </div>
 
-        {/* Zone 2: 4 Command Bar Navigation Links with Active Amber Indicator */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#0D1322] border border-slate-800/90 rounded-lg p-1">
-          {[
-            { id: 'workspace', label: 'Analyze a Decision', href: '#workspace' },
-            { id: 'dashboard', label: 'Blind Spots', href: '#dashboard' },
-            { id: 'change-mind', label: 'Change My Mind', href: '#change-mind' },
-            { id: 'revisited', label: 'Thinking Revisited', href: '#revisited' },
-          ].map((item) => {
-            const isActive = activeNav === item.id;
-            return (
-              <a
-                key={item.id}
-                href={item.href}
-                onClick={() => setActiveNav(item.id as NavSection)}
-                className={`relative px-3.5 py-1.5 text-xs font-medium rounded-md transition-all duration-150 whitespace-nowrap ${
-                  isActive
-                    ? 'text-amber-300 bg-amber-500/10'
-                    : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/40'
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-amber-400 rounded-full" />
-                )}
-              </a>
-            );
-          })}
-        </nav>
+          <nav className="hidden items-center gap-1 rounded-full border border-white/8 bg-[#111820]/80 p-1 md:flex">
+            {[
+              { id: 'workspace', label: 'Analyze', href: '#workspace' },
+              { id: 'dashboard', label: 'Blind Spots', href: '#dashboard' },
+              { id: 'change-mind', label: 'Challenge', href: '#change-mind' },
+              { id: 'revisited', label: 'Revisited', href: '#revisited' },
+            ].map((item) => {
+              const isActive = activeNav === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setActiveNav(item.id as NavSection)}
+                  className={`relative rounded-full px-3.5 py-1.75 text-[0.72rem] font-medium transition-all duration-200 ${
+                    isActive
+                      ? 'bg-[#7CE7C4]/10 text-[#7CE7C4]'
+                      : 'text-[#A7B3BE] hover:text-[#F5F7F4]'
+                  }`}
+                >
+                  {item.label}
+                  {isActive && <span className="absolute -bottom-1 left-3 right-3 h-0.5 rounded-full bg-[#7CE7C4]" />}
+                </a>
+              );
+            })}
+          </nav>
 
-        {/* Zone 3: Primary Action CTA */}
-        <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={scrollToAnalyzer}
-            className="px-4 py-2 text-xs font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-all duration-150 hover:-translate-y-0.5 shadow-sm shadow-amber-500/10 whitespace-nowrap cursor-pointer"
+            className="brand-button-secondary px-4 py-2 text-[0.72rem] font-semibold text-[#F5F7F4]"
           >
-            Analyze a Decision
+            New Decision
           </button>
         </div>
       </header>
@@ -479,41 +474,38 @@ export default function App() {
           <div className="relative max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
             {/* Left Column (7 Cols): Editorial Headline + 4-Stage Trajectory */}
             <div className="lg:col-span-7 space-y-7">
-              <div className="flex items-center gap-2.5 text-xs font-mono text-amber-400 tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse-subtle" />
-                <span>AI DECISION-INTELLIGENCE LABORATORY</span>
-                <span aria-hidden="true" className="text-slate-600">·</span>
-                <span className="text-sky-400">NON-PRESCRIPTIVE ENGINE</span>
+              <div className="flex items-center gap-2.5 text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[#7CE7C4]">
+                <span className="h-2 w-2 rounded-full bg-[#7CE7C4] animate-pulse-subtle" />
+                <span>Decision intelligence</span>
               </div>
 
               <h1
-                className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold tracking-tight text-slate-50 font-display leading-[1.04]"
+                className="max-w-xl text-4xl font-semibold tracking-[-0.06em] text-[#F5F7F4] sm:text-5xl lg:text-[62px] lg:leading-[1.02]"
                 style={{ textWrap: 'balance' }}
               >
-                See what you&apos;re missing before you decide.
+                See what you&apos;re missing <span className="text-[#7CE7C4]">before you decide.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed">
-                BLIND SPOT is an AI thinking companion that challenges your reasoning without making the decision for you—exposing hidden assumptions, missing evidence, biases, and second-order effects before you commit.
+              <p className="max-w-xl text-base text-[#A7B3BE] sm:text-lg">
+                BLIND SPOT stress-tests your reasoning, surfaces hidden assumptions, and shows you what to verify — without making the decision for you.
               </p>
 
-              {/* Primary Hero Actions */}
-              <div className="pt-1 flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4 pt-1">
                 <button
                   type="button"
                   onClick={scrollToAnalyzer}
-                  className="group inline-flex items-center gap-3 px-6 py-3.5 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 rounded-lg transition-all duration-150 hover:-translate-y-0.5 shadow-lg shadow-amber-500/15 whitespace-nowrap cursor-pointer"
+                  className="brand-button-primary px-6 py-3.5 text-sm"
                 >
-                  <span>ANALYZE A DECISION</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-150 group-hover:translate-x-1" />
+                  <span>Analyze a decision</span>
+                  <ArrowRight className="h-4 w-4 transition-transform duration-150 group-hover:translate-x-1" />
                 </button>
 
                 <button
                   type="button"
                   onClick={() => handleSelectScenario(SAMPLE_SCENARIOS[0])}
-                  className="inline-flex items-center gap-2 px-5 py-3.5 text-sm font-medium text-slate-300 hover:text-slate-100 bg-[#0D1322]/90 border border-slate-800 hover:border-slate-700 rounded-lg transition-all duration-150 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+                  className="brand-button-secondary px-5 py-3.5 text-sm text-[#F5F7F4]"
                 >
-                  <span>Load Live Demo Dilemma</span>
+                  <span>Try a sample decision</span>
                 </button>
               </div>
 
@@ -741,92 +733,86 @@ export default function App() {
             {/* Structured Command Workspace Form */}
             <form
               onSubmit={handleAnalyzeDecision}
-              className="bg-[#0D1322] border border-slate-800 rounded-xl p-6 lg:p-8 space-y-6 shadow-xl shadow-black/40"
+              className="brand-panel p-5 sm:p-6 lg:p-8 space-y-5"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <label
                     htmlFor="decision-textarea"
-                    className="text-xs font-mono text-amber-400 tracking-wider"
+                    className="text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[#7DD3FC]"
                   >
-                    DECISION TO ANALYZE
+                    Decision to analyze
                   </label>
-                  <span className="text-[11px] font-mono text-slate-400 tabular-nums">
-                    {decisionInput.trim().length} CHARS
+                  <span className="text-[11px] text-[#6F7C88] tabular-nums">
+                    {decisionInput.trim().length} chars
                   </span>
                 </div>
 
                 <textarea
                   id="decision-textarea"
                   ref={textareaRef}
-                  rows={4}
+                  rows={5}
                   value={decisionInput}
                   onChange={(e) => {
                     setDecisionInput(e.target.value);
                     if (errorMsg) setErrorMsg(null);
                   }}
-                  placeholder="Should I attend this hackathon or stay home and finish my college work?"
-                  className="w-full bg-[#070A12] border border-slate-800 focus:border-amber-500/80 focus:outline-none rounded-lg p-4 text-base text-slate-100 placeholder:text-slate-500 leading-relaxed resize-y transition-colors"
+                  placeholder="Example: Should I accept this internship even though it means delaying my graduation by a semester?"
+                  className="w-full resize-y rounded-2xl border border-white/8 bg-[#0B0F14] px-4 py-4 text-base leading-relaxed text-[#F5F7F4] placeholder:text-[#6F7C88] focus:border-[#7CE7C4]/80 focus:outline-none"
                 />
               </div>
 
-              {/* Optional Contextual Framing Fields */}
-              <div className="space-y-3 pt-1 border-t border-slate-800/80">
+              <div className="space-y-3 rounded-2xl border border-white/8 bg-[#0B0F14]/60 p-3">
                 <button
                   type="button"
                   onClick={() => setShowOptionalContext((prev) => !prev)}
-                  className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-[#A7B3BE] transition-colors hover:text-[#F5F7F4]"
                 >
-                  <SlidersHorizontal className="w-3.5 h-3.5 text-sky-400" />
-                  <span>OPTIONAL ANALYTICAL PARAMETERS (CONTEXT · CONSTRAINTS · PRIORITIES)</span>
-                  {showOptionalContext ? (
-                    <ChevronUp className="w-3.5 h-3.5" />
-                  ) : (
-                    <ChevronDown className="w-3.5 h-3.5" />
-                  )}
+                  <SlidersHorizontal className="h-4 w-4 text-[#7DD3FC]" />
+                  <span>{showOptionalContext ? 'Hide details' : '+ Add context'}</span>
                 </button>
 
                 {showOptionalContext && (
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
+                  <div className="grid grid-cols-1 gap-3 pt-1 md:grid-cols-3">
                     <div className="space-y-1.5">
-                      <label htmlFor="ctx-field" className="block text-[11px] font-mono text-slate-400">
-                        CONTEXT (OPTIONAL)
+                      <label htmlFor="ctx-field" className="block text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#6F7C88]">
+                        Context
                       </label>
                       <input
                         id="ctx-field"
                         type="text"
                         value={contextField}
                         onChange={(e) => setContextField(e.target.value)}
-                        placeholder="e.g., Junior CS major, midterm week"
-                        className="w-full bg-[#070A12] border border-slate-800 focus:border-sky-500/60 focus:outline-none rounded-lg px-3 py-2 text-xs text-slate-200 placeholder:text-slate-600"
+                        placeholder="e.g., junior year, delayed graduation"
+                        className="w-full rounded-xl border border-white/8 bg-[#111820] px-3 py-2.5 text-sm text-[#F5F7F4] placeholder:text-[#6F7C88] focus:border-[#7DD3FC]/70 focus:outline-none"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="constraints-field" className="block text-[11px] font-mono text-slate-400">
-                        CONSTRAINTS (OPTIONAL)
+                      <label htmlFor="constraints-field" className="block text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#6F7C88]">
+                        Constraints
                       </label>
                       <input
                         id="constraints-field"
                         type="text"
                         value={constraintsField}
                         onChange={(e) => setConstraintsField(e.target.value)}
-                        placeholder="e.g., 48 hours available, Monday 9am lab"
-                        className="w-full bg-[#070A12] border border-slate-800 focus:border-sky-500/60 focus:outline-none rounded-lg px-3 py-2 text-xs text-slate-200 placeholder:text-slate-600"
+                        placeholder="e.g., budget, time, obligations"
+                        className="w-full rounded-xl border border-white/8 bg-[#111820] px-3 py-2.5 text-sm text-[#F5F7F4] placeholder:text-[#6F7C88] focus:border-[#7DD3FC]/70 focus:outline-none"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="matters-field" className="block text-[11px] font-mono text-slate-400">
-                        WHAT MATTERS MOST? (OPTIONAL)
+                      <label htmlFor="matters-field" className="block text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#6F7C88]">
+                        What matters most
                       </label>
                       <input
                         id="matters-field"
                         type="text"
                         value={mattersMostField}
                         onChange={(e) => setMattersMostField(e.target.value)}
-                        placeholder="e.g., Building portfolio without failing GPA"
-                        className="w-full bg-[#070A12] border border-slate-800 focus:border-sky-500/60 focus:outline-none rounded-lg px-3 py-2 text-xs text-slate-200 placeholder:text-slate-600"
+                        placeholder="e.g., career growth vs. academic timing"
+                        className="w-full rounded-xl border border-white/8 bg-[#111820] px-3 py-2.5 text-sm text-[#F5F7F4] placeholder:text-[#6F7C88] focus:border-[#7DD3FC]/70 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -836,17 +822,17 @@ export default function App() {
               {errorMsg && (
                 <div
                   role="alert"
-                  className="flex items-start gap-3 p-3.5 rounded-lg bg-rose-950/40 border border-rose-800/60 text-rose-200 text-xs leading-relaxed"
+                  className="flex items-start gap-3 rounded-xl border border-[#FF6B7A]/40 bg-[#FF6B7A]/10 p-3.5 text-xs leading-relaxed text-[#F5F7F4]"
                 >
-                  <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF6B7A]" />
                   <span>{errorMsg}</span>
                 </div>
               )}
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2 border-t border-slate-800/80">
-                <div className="flex items-center gap-2 text-xs text-slate-400">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span>Strict Non-Prescriptive Audit · Surfaces what you might be missing</span>
+              <div className="flex flex-col justify-between gap-4 border-t border-white/8 pt-4 sm:flex-row sm:items-center">
+                <div className="flex items-center gap-2 text-xs text-[#A7B3BE]">
+                  <span className="h-2 w-2 rounded-full bg-[#B7F7D8]" />
+                  <span>Non-prescriptive analysis</span>
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -861,7 +847,7 @@ export default function App() {
                         setErrorMsg(null);
                         textareaRef.current?.focus();
                       }}
-                      className="px-3.5 py-2.5 text-xs font-medium text-slate-400 hover:text-slate-200 border border-slate-800 hover:border-slate-700 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+                      className="rounded-xl border border-white/8 bg-[#0B0F14] px-3.5 py-2.5 text-xs font-medium text-[#A7B3BE] transition-colors hover:text-[#F5F7F4]"
                     >
                       Clear
                     </button>
@@ -870,10 +856,10 @@ export default function App() {
                   <button
                     type="submit"
                     disabled={isLoadingAnalysis}
-                    className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 text-sm font-semibold text-slate-950 bg-amber-500 hover:bg-amber-400 disabled:opacity-60 rounded-lg transition-all duration-150 hover:-translate-y-0.5 shadow-lg shadow-amber-500/15 whitespace-nowrap cursor-pointer"
+                    className="brand-button-primary px-6 py-3 text-sm"
                   >
-                    <Search className="w-4 h-4" />
-                    <span>{isLoadingAnalysis ? 'RUNNING COGNITIVE AUDIT...' : 'ANALYZE DECISION →'}</span>
+                    <Search className="h-4 w-4" />
+                    <span>{isLoadingAnalysis ? 'Running review...' : 'Analyze my thinking'}</span>
                   </button>
                 </div>
               </div>
@@ -895,9 +881,12 @@ export default function App() {
               <div className="bg-[#0D1322] border border-slate-800 rounded-xl p-8 space-y-8">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6">
                   <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
+                    <div className="flex items-center gap-3">
+                      <BlindSpotLogo size={32} wordmark={false} />
+                      <div className="flex items-center gap-2 text-xs font-mono text-amber-400">
                       <span className="w-2 h-2 rounded-full bg-amber-400 animate-ping" />
                       <span>DECISION INTELLIGENCE ENGINE ACTIVE</span>
+                      </div>
                     </div>
                     <h3 className="text-xl font-bold text-slate-100 font-display">
                       Auditing assumptions, blind-spot signals, and downstream risk vectors...
@@ -945,8 +934,8 @@ export default function App() {
             {/* STANDBY / EMPTY STATE */}
             {!isLoadingAnalysis && !currentAnalysis && (
               <div className="bg-[#0D1322] border border-slate-800 rounded-xl p-8 lg:p-12 text-center max-w-3xl mx-auto space-y-6">
-                <div className="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
-                  <Compass className="w-6 h-6 text-amber-400" />
+                <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mx-auto">
+                  <BlindSpotLogo size={36} wordmark={false} />
                 </div>
 
                 <div className="space-y-2">
@@ -984,153 +973,105 @@ export default function App() {
             {!isLoadingAnalysis && currentAnalysis && (
               <div className="space-y-14">
                 {/* REPORT HEADER & DECISION SNAPSHOT */}
-                <div className="bg-[#0D1322] border border-slate-800 rounded-xl p-6 lg:p-8 space-y-6">
-                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-                    <div className="space-y-1.5">
-                      <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-amber-400">
-                        <span>DECISION SNAPSHOT</span>
-                        <span aria-hidden="true">·</span>
-                        <span className="tabular-nums">TIMESTAMP {currentAnalysis.timestamp}</span>
-                        <span aria-hidden="true">·</span>
-                        <span className="text-sky-400">
-                          {currentAnalysis.isFallback ? 'DEMO ENGINE' : 'GEMINI LIVE ENGINE'}
-                        </span>
+                <div className="brand-panel p-5 lg:p-8 space-y-6">
+                  <div className="flex items-center gap-2.5">
+                    <BlindSpotLogo size={24} wordmark={false} />
+                    <span className="text-sm font-semibold tracking-[0.045em] text-[#A7B3BE]">BLIND SPOT analysis</span>
+                  </div>
+                  <div className="flex flex-col justify-between gap-4 border-b border-white/8 pb-5 lg:flex-row lg:items-center">
+                    <div className="space-y-2">
+                      <div className="flex flex-wrap items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[#7CE7C4]">
+                        <span>Your decision snapshot</span>
+                        <span className="text-[#6F7C88]">•</span>
+                        <span className="tabular-nums text-[#A7B3BE]">{currentAnalysis.timestamp}</span>
+                        <span className="text-[#7DD3FC]">{currentAnalysis.isFallback ? 'Demo mode' : 'Live analysis'}</span>
                       </div>
-                      <h2 className="text-xl sm:text-2xl font-bold text-slate-50 font-display">
-                        &ldquo;{currentAnalysis.decisionInput}&rdquo;
+                      <h2 className="text-xl font-semibold tracking-[-0.05em] text-[#F5F7F4] sm:text-2xl">
+                        “{currentAnalysis.decisionInput}”
                       </h2>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-3 shrink-0">
+                    <div className="flex flex-wrap items-center gap-3">
                       <button
                         type="button"
                         onClick={handleChallengeThinking}
                         disabled={isLoadingRedTeam}
-                        className="inline-flex items-center gap-2 px-4 py-2.5 text-xs font-bold text-slate-950 bg-rose-400 hover:bg-rose-300 disabled:opacity-60 rounded-lg transition-all duration-150 hover:-translate-y-0.5 whitespace-nowrap cursor-pointer"
+                        className="rounded-xl bg-[#FF6B7A] px-4 py-2.5 text-[0.72rem] font-semibold text-[#0B0F14] transition-opacity disabled:opacity-60"
                       >
-                        <span className="w-2 h-2 rounded-full bg-slate-950" />
-                        <span>{isLoadingRedTeam ? 'CHALLENGING...' : 'CHALLENGE MY THINKING'}</span>
+                        {isLoadingRedTeam ? 'Challenging...' : 'Challenge my thinking'}
                       </button>
 
                       <button
                         type="button"
                         onClick={handleResetAll}
-                        className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs font-medium text-slate-300 hover:text-slate-100 bg-[#070A12] border border-slate-800 hover:border-slate-700 rounded-lg transition-colors whitespace-nowrap cursor-pointer"
+                        className="rounded-xl border border-white/8 bg-[#0B0F14] px-3.5 py-2.5 text-[0.72rem] font-medium text-[#A7B3BE]"
                       >
-                        <RotateCcw className="w-3.5 h-3.5" />
-                        <span>New Decision</span>
+                        <span className="inline-flex items-center gap-1.5">
+                          <RotateCcw className="h-3.5 w-3.5" />
+                          New Decision
+                        </span>
                       </button>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-4">
+                    {[{ label: 'Dimensions', value: 9 }, { label: 'Assumptions', value: 4 }, { label: 'Risks', value: 3 }, { label: 'Unknowns', value: 5 }].map((metric) => (
+                      <div key={metric.label} className="brand-metric p-4">
+                        <div className="text-3xl font-semibold tracking-[-0.06em] text-[#F5F7F4]">{metric.value}</div>
+                        <div className="mt-1 text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#A7B3BE]">{metric.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                     <div className="space-y-1.5">
-                      <p className="text-[11px] font-mono text-sky-400 tracking-wider">
-                        IMPLICIT FRAMING LENS
-                      </p>
-                      <p className="text-sm text-slate-200 leading-relaxed">
-                        {currentAnalysis.decisionSnapshot.framing}
-                      </p>
+                      <p className="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#7DD3FC]">Framing</p>
+                      <p className="text-sm leading-relaxed text-[#A7B3BE]">{currentAnalysis.decisionSnapshot.framing}</p>
                     </div>
 
-                    <div className="space-y-1.5 md:border-l md:border-slate-800 md:pl-6">
-                      <p className="text-[11px] font-mono text-amber-400 tracking-wider">
-                        CORE STRUCTURAL TENSION
-                      </p>
-                      <p className="text-sm text-slate-200 leading-relaxed">
-                        {currentAnalysis.decisionSnapshot.coreTension}
-                      </p>
+                    <div className="space-y-1.5 md:border-l md:border-white/8 md:pl-6">
+                      <p className="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#7CE7C4]">Core tension</p>
+                      <p className="text-sm leading-relaxed text-[#A7B3BE]">{currentAnalysis.decisionSnapshot.coreTension}</p>
                     </div>
 
-                    <div className="space-y-1.5 md:border-l md:border-slate-800 md:pl-6">
-                      <p className="text-[11px] font-mono text-emerald-400 tracking-wider">
-                        SOVEREIGNTY GUARDRAIL
-                      </p>
-                      <p className="text-sm text-slate-300 leading-relaxed">
-                        {currentAnalysis.decisionSnapshot.neutralityNote}
-                      </p>
+                    <div className="space-y-1.5 md:border-l md:border-white/8 md:pl-6">
+                      <p className="text-[0.7rem] font-medium uppercase tracking-[0.12em] text-[#B7F7D8]">Neutrality guardrail</p>
+                      <p className="text-sm leading-relaxed text-[#A7B3BE]">{currentAnalysis.decisionSnapshot.neutralityNote}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* =====================================================================
-                    6. VISUAL HERO SECTION: 04 BLIND SPOTS (IDENTIFIED SIGNALS)
-                   ===================================================================== */}
-                <div className="bg-[#0D1322] border-2 border-amber-500/40 rounded-xl p-6 lg:p-8 space-y-6 shadow-2xl shadow-amber-500/5">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-5">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2 text-xs font-mono text-amber-400 tracking-wider">
-                        <EyeOff className="w-4 h-4" />
-                        <span>04 · BLIND SPOTS DETECTED — PRIMARY COGNITIVE SIGNALS</span>
+                <div className="brand-panel p-6 lg:p-8 space-y-6">
+                  <div className="flex flex-col justify-between gap-4 border-b border-white/8 pb-5 sm:flex-row sm:items-end">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-[0.7rem] font-medium uppercase tracking-[0.14em] text-[#7CE7C4]">
+                        <EyeOff className="h-4 w-4" />
+                        <span>Your biggest blind spots</span>
                       </div>
-                      <h3 className="text-2xl font-bold text-slate-50 font-display">
+                      <h3 className="text-2xl font-semibold tracking-[-0.05em] text-[#F5F7F4]">
                         What may you be overlooking?
                       </h3>
-                      <p className="text-xs text-slate-400">
-                        Each signal highlights an unexamined distortion, assumption trap, or framing blind spot in your current thinking.
-                      </p>
                     </div>
 
-                    <div className="font-mono text-right shrink-0 bg-[#070A12] border border-slate-800 px-4 py-2 rounded-lg">
-                      <span className="text-[11px] text-slate-400 block">DETECTED SIGNALS</span>
-                      <span className="text-base font-bold text-amber-400 tabular-nums">
-                        0{currentAnalysis.keyConsiderationsSummary.length} ACTIVE
-                      </span>
+                    <div className="rounded-xl border border-white/8 bg-[#0B0F14] px-3 py-2 text-right">
+                      <div className="text-[0.62rem] uppercase tracking-[0.12em] text-[#6F7C88]">Detected signals</div>
+                      <div className="text-lg font-semibold text-[#7CE7C4]">{currentAnalysis.keyConsiderationsSummary.length}</div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                     {currentAnalysis.keyConsiderationsSummary.map((signalText, idx) => {
                       const matchingAssumption = currentAnalysis.assumptions[idx];
-                      const riskLevel = matchingAssumption?.fragility
-                        ? matchingAssumption.fragility.toUpperCase()
-                        : idx === 0
-                        ? 'HIGH'
-                        : 'MEDIUM';
-
-                      const signalTitles = [
-                        'PLANNING & EXECUTION FALLACY',
-                        'BINARY FRAMING TRAP',
-                        'UNVERIFIED BASELINE VARIABLE',
-                        'SECOND-ORDER FATIGUE BLINDNESS',
-                      ];
-                      const signalCategory = signalTitles[idx % signalTitles.length];
+                      const riskLevel = matchingAssumption?.fragility ? matchingAssumption.fragility.toUpperCase() : idx === 0 ? 'HIGH' : 'MEDIUM';
+                      const tone = riskLevel === 'HIGH' ? 'text-[#FF6B7A]' : riskLevel === 'MEDIUM' ? 'text-[#FFC857]' : 'text-[#7DD3FC]';
 
                       return (
-                        <div
-                          key={idx}
-                          className="p-5 bg-[#070A12] border border-slate-800 hover:border-amber-500/50 rounded-xl space-y-3 transition-all duration-150 hover:-translate-y-0.5"
-                        >
-                          <div className="flex items-center justify-between gap-2 text-xs font-mono">
-                            <span className="text-amber-400 font-bold tabular-nums">
-                              BLIND SPOT #0{idx + 1} · {signalCategory}
-                            </span>
-                            <span
-                              className={`tabular-nums ${
-                                riskLevel === 'HIGH' ? 'text-rose-400' : 'text-amber-300'
-                              }`}
-                            >
-                              Risk level: {riskLevel}
-                            </span>
+                        <div key={idx} className="rounded-2xl border border-white/8 bg-[#0B0F14] p-4 transition-transform hover:-translate-y-0.5">
+                          <div className="mb-3 flex items-center justify-between gap-2 text-[0.62rem] font-medium uppercase tracking-[0.12em]">
+                            <span className="text-[#7CE7C4]">Blind spot {idx + 1}</span>
+                            <span className={tone}>{riskLevel}</span>
                           </div>
-
-                          <p className="text-sm sm:text-base text-slate-100 font-medium leading-relaxed">
-                            &ldquo;{signalText}&rdquo;
-                          </p>
-
-                          {/* Subtle Severity Bar */}
-                          <div className="pt-1 flex items-center gap-2">
-                            <div className="flex-1 h-1 bg-slate-800 rounded-full overflow-hidden">
-                              <div
-                                className={`h-full ${
-                                  riskLevel === 'HIGH' ? 'w-4/5 bg-rose-400' : 'w-3/5 bg-amber-400'
-                                }`}
-                              />
-                            </div>
-                            <span className="text-[11px] font-mono text-slate-400">
-                              Signal Verified
-                            </span>
-                          </div>
+                          <p className="text-sm leading-relaxed text-[#F5F7F4]">“{signalText}”</p>
                         </div>
                       );
                     })}
@@ -2035,7 +1976,7 @@ export default function App() {
       <footer className="py-8 px-6 lg:px-12 text-xs text-slate-500 border-t border-slate-800/60 bg-[#070A12]">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <span className="font-bold text-slate-300 font-display">BLIND SPOT</span>
+            <BlindSpotLogo size={24} />
             <span aria-hidden="true">·</span>
             <span>See what you&apos;re missing before you decide.</span>
           </div>
